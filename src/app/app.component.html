@@ -1,0 +1,29 @@
+<h1 style="text-align: center;">{{titulo}} </h1>
+<form >
+<!-- creamos un box in banana para pasar el nombre y el apellido, que quedará almacenado en la variable -->
+<input type="text" name="Nombre" [(ngModel)]="nombre"><br/>
+<input type="text" name="Apellido" [(ngModel)]="apellido"><br/>
+<input type="text" name="Cargo" [(ngModel)]="cargo"><br/>
+<input type="submit" value="Entrar" (click)="usuarioRegistro()">
+</form>
+<br/>
+<!-- con ngIF, es un condicional, que dice que si registrado es true aparezca el mensaje -->
+<!-- concatenamos el mensaje con el nombre y el apellido que haya escrito el usuario, hacemos una interplolación -->
+<p *ngIf="registrado; else sinRegistrar">{{mensaje}} con el nombre de: {{nombre}} {{apellido}} y su cargo es 
+  <!-- metemos en un span el ngStyle, donde daremos estilo, le pasamos un operador ternario donde realiza una condicón si cargo es igual a director, la condición es rojo si es otro cargo negro -->
+  <!-- <span [ngStyle]="{color: cargo=='director' ? 'red': 'black'}"> {{cargo}}</span></p> -->
+
+  <!-- con ngClass le damos varios estilos creando un estilo css en app.component.css, y lo aplicamos -->
+  <span [ngClass]="{paraDirector:cargo=='director'}"> {{cargo}}</span></p>
+
+
+<ng-template #sinRegistrar>
+  <p>Nadie Registrado</p>
+</ng-template>
+
+<br><br>
+<ul>
+<!-- utilizamos el ngFor es un bucle for donde creamos una variable let entrada of un array entradas el cual queremos recorrer, luego entre llaves le damos la propiedad a mostrar. entrada.titulo -->
+  <li *ngFor="let entrada of entradas; let i=index" ><span style="font-size: larger; font-weight: bold;">{{entrada.titulo}}</span> . Entrada {{i+1}}</li>
+
+</ul>
